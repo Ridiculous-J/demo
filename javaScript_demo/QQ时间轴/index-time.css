@@ -1,0 +1,226 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	background:url(images/1.jpg) #1c0c0f center 0 no-repeat fixed;
+	margin:0px;
+	padding:0;
+	padding-top:41px;	
+}
+.top{
+	width:100%;
+	height:41px;
+	position:fixed;
+	top:0px;
+	background:#001E38;
+	z-index:99;
+	box-shadow:0 1px 0 rgba(0,0,0.2);	
+}/*圆角属性*/
+.header{
+	width:960px;
+	height:200px;
+	margin:0 auto;
+	background:rgba(255,255,255,.2);	
+}
+.container{	
+	width:960px;
+	margin:0 auto;
+	position:relative;
+}
+.scrubber{
+	width:47px;
+	min-height:200px;
+	position:absolute;
+	top:29px;
+	left:0px;
+	z-index:999;
+	background:rgba(255,255,255,.2);/*等待去掉*/	
+}
+.scrubber a{
+	display:block;
+	height:26px;
+	line-height:26px;
+	font-size:12px;
+	border-right:2px solid #c8c8c8;
+	border-right-color:rgba(200,200,200,.5);
+	padding-right:5px;
+	color:#a5a5a5;
+	text-decoration:none;
+	text-align:right;
+	text-shadow:0 1px 1px rgba(0,0,0,.3);	
+}
+.scrubber a.current{
+	border-right-color:#7ebad0;
+	color:#7ebad0;
+	font-weight:bold;	
+}
+.scrubber a.current:hover{
+	text-decoration:none;
+}
+.scrubber a:hover{
+	text-decoration:underline;	
+}
+.content{
+	min-height:1000px;
+	background:url(images/spine.png) repeat-y 121px 0;
+	padding-top:50px;
+	padding-left:160px;	
+	position:relative;
+}/*background的定位依据又有点忘了*/
+.content-year,.content-month{
+	height:30px;
+	line-height:30px;
+	color:#a5a5a5;
+	text-shadow:0 1px 1px rgba(0,0,0,.3);
+	font-weight:bold;
+	font-size:14px;
+	position:relative;
+	left:-90px;
+	clear:both;	
+}
+/*图标组*/
+.content-item{
+	width:370px;
+	min-height:300px;
+	background:#fff;
+	border-radius:4px;
+	margin:20px 30px 0 0;
+	position:relative;
+	color:#888;	
+}
+.content-item-icon-arrow{
+	position:absolute;
+	left:-10px;
+	top:20px;
+	height:0px;
+	border-color:transparent #fff transparent transparent;
+	border-width:10px 10px 10px 0px;
+	border-style:dashed solid dashed dashed;	
+}/*CSS实现三角形*/
+.content-item-icon-dot{
+	width:11px;
+	height:11px;
+	border-radius:11px;
+	background:#fff;
+	position:absolute;
+	left:-43px;
+	top:25px;	
+}/*CSS3特性做圆*/
+.child{	
+	width:7px;
+	height:7px;
+	border-radius:7px;
+	background:#b3dae9;
+	position:absolute;
+	left:2px;
+	top:2px;
+}
+/*日历组*/
+.content-item-head{	
+	padding:15px;
+	padding-bottom:0px;
+}
+.head-title{
+	height:46px;
+	line-height:46px;
+	font-size:28px;
+	padding:0 0 10px 56px;
+	position:relative;	
+}
+.lunar{	
+	widtH:46px;
+	height:46px;
+	background:#b3dae9;
+	border-radius:8px;
+	position:absolute;
+	left:0px;
+	top:0px;
+	overflow:hidden;
+	color:#fff;
+	/*保证显示两行数字 经过计算后的数值*/
+	font-size:27px;
+	line-height:23px;
+}
+.head-intro{
+	font-size:14px;
+	line-height:22px;
+	padding:0px 15px;
+	margin-bottom:10px;	
+}
+/*新增的图标*/
+.ui_icon{
+	width:15px;
+	height:15px;
+	display:inline-block;
+	background-repeat:no-repeat;
+	font-size:0px;/*解决inline-block的空隙问题*/
+	overflow:hidden;
+	background-image:url(images/timeline.png);
+	
+	vertical-align:bottom;	
+}
+.quote_before{	
+	background-position:-986px -88px;
+	margin-left:5px;
+}
+.quote_after{
+	background-position:-986px -102px;
+	margin-left:5px;
+}
+/*评论区*/
+.contnet-item-media{
+	height:277px;
+	overflow:hidden;
+	padding-bottom:10px;	
+}
+.content-item-footer{
+	padding:10px 15px;
+	margin:0px 15px;
+	border-top:1px solid #d6d6d6;
+	font-size:12px;
+	color:#b2b2b2;
+	line-height:20px;`
+}
+.footer_like{
+	padding-top:5px;	
+}
+.footer_info a{	
+	color:#b2b2b2;
+	text-decoration:none;
+	padding-right:10px;
+	display:inline-block;
+	height:20px;
+}
+.icon_icon{
+	width:20px;
+	height:20px;
+	display:inline-block;
+	background-repeat:no-repeat;
+	font-size:0px;/*解决inline-block的空隙问题*/
+	overflow:hidden;
+	background-image:url(images/timeline.png);
+	
+	vertical-align:bottom;		
+}
+.icon_zan{
+	background-position:-883px -21px;
+}
+.icon_pin{	
+	background-position:-897px -42px;
+}
+.hide{
+	display:none;	
+}
+/*附加的*/
+.content-item-left{
+	float:left;	
+}
+.content-item-right{
+	float:right;	
+}
+.content .first{
+	margin-top:-20px;
+}/*区分是否为第一个日志*/
+.content-item-right .content-item-icon-dot{
+	left:-443px;/*在右边的点要重新定位*/
+		
+}

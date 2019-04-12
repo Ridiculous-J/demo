@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>构造之间</title>
+	<link rel="stylesheet" href="css/initialise.css" />
+	<script src="js/jQ.js"></script>
+	<script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                var items = $("#content").find(".item");
+                var menu = $("#menu");
+                var top = $(document).scrollTop();
+                var currentId = ""; //滚动条现在所在位置的item id
+                items.each(function () {
+                    var m = $(this);
+                    //注意：m.offset().top代表每一个item的顶部位置
+                    if (top > m.offset().top - 300) {
+                        currentId = "#" + m.attr("id");
+                    } else {
+                        return false;
+                    }
+                });
+
+                var currentLink = menu.find(".current");
+                if (currentId && currentLink.attr("href") != currentId) {
+                    currentLink.removeClass("current");
+                    menu.find("[href=" + currentId + "]").addClass("current");
+                }
+            });
+        });
+	</script>
+	<style type="text/css">
+		/*
+		 问题1：悬浮框常用的定位机制 margin和padding究竟是如何定位的来着
+		 几个定位机制 控制的距离是根据谁来当做标准的 
+		 问题2：被撑开的像素现在又是如何计算的呢
+		 逻辑
+		 	基础布局：大div→5个小div→1个h2标题+9个li a img链接
+		 	css： h1标题为蓝色→小div有边框 h2有下划线 img大小限定
+		 		悬浮边框就是位置的问题 以及点击后颜色变化属性和滑动点击特性为蓝色 
+		 		这种页面逻辑写的有问题
+		 	悬浮边框：竖排的li组成去掉标点符号 文字去掉下划线 居中显示 大小限定 块级化 大小限定 点击后颜色背景变化
+		 	小盒子：宽高与边框 文字大小与颜色 子元素的位置和定位
+		 	新特性
+		 	1：H5取消name链接锚点的设定 改用id和href的#id来统一绑定 选择器啊 这是...
+		 */
+	</style>
+	</head>
+	<body>
+	<!--ul>li*5>a+tab 就能触发内置的那个zencoding插件 真棒-->
+	<!--右侧悬浮栏start-->
+	<div id="menu">
+		<ul>
+			<li><a href="#item1" class="current">1F中央广场 </a></li>
+			<li><a href="#item2">2F回忆之间</a></li>
+			<li><a href="#item3">3F遗忘之间</a></li>
+			<li><a href="#item4">4F时空裂缝</a></li>
+			<li><a href="#item5">5F平行时空</a></li>
+		</ul>
+	</div>
+	<!--右侧悬浮栏end-->
+	<!--总框架开始-->
+	<div id="content">
+		<h1>构造之间</h1>
+		<!--第一个空间裂缝start-->
+		<div id="item1" class="item">
+			<h2>1F 中央广场</h2>
+			<ul>
+				<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<!--第一个空间裂缝end-->
+		<!--第二个空间裂缝start-->
+		<div id="item2" class="item">
+			<h2>2F 回忆之间</h2>
+			<ul>
+				<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<!--第二个空间裂缝end-->
+		<!--第三个空间裂缝start-->
+		<div id="item3" class="item">
+			<h2>3F 遗忘之间</h2>
+			<ul>
+				<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<!--第三个空间裂缝end-->
+		<!--第四个空间裂缝start-->
+		<div id="item4" class="item">
+			<h2>4F 时空裂缝</h2>
+			<ul>
+				<li><a href="#"><img src="img/4F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/4F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/4F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/4F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/4F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/4F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/4F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/4F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/4F.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<!--第四个空间裂缝end-->
+		<!--第五个空间裂缝start-->
+		<div id="item5" class="item">
+			<h2>5F 平行时空</h2>
+			<ul>
+				<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<!--第五个空间裂缝end-->
+		
+		
+	</div>
+	<!--总空间结束-->
+</html>

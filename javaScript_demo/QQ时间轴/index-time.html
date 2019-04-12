@@ -1,0 +1,332 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>时间轴</title>
+<link href="index-time.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div class="hide">
+	<!--被隐藏的内容-->
+    <!--年月份-->
+	<div id="tpl_scrubber_year">
+    	<a href="javascript:;" class="scrubber-year current" id="scrubber_year_{year}" onClick="show_year({year})">{year}</a>
+        {list}
+    </div>
+    <div id="tpl_scrubber_month">
+    	<a href="javascript:;" class="scrubber-month" id="scrubber_month_{year}_{month}" onClick="show_month({year},{month})">{month}月</a>
+    </div>
+    <!--内容模板-->
+    <div id="tpl_content_year">
+    
+    	<div class="content-year" id="content_year_{year}" onClick="show_year({year})">{year}</div>
+         {list}
+    </div>
+    <div id="tpl_content_month">
+    	<div class="content-month" id="content_month_{year}_{month}" onClick="show_month({year},{month})">{month}月</div>
+        {list}
+    </div>
+    <div id="tpl_content_item">
+        <div class="content-item content-item-{position} {isFirst}">
+            <div class="content-item-icon-arrow">
+                    </div>
+            <div class="content-item-icon-dot">
+                        <div class="child">
+                        </div>
+                    </div><!--图标组-->
+            <div class="content-item-head"><!--年月日-->
+                        <div class="head-title">
+                            <div class="lunar">
+                                {lunar}
+                            </div>
+                            {date}
+                        </div>
+                        <div class="head-intro">
+                            <i class="ui_icon quote_before"></i>
+                            {intro}
+        <i class="ui_icon quote_after"></i>
+                        </div>
+                    </div>
+            <div class="contnet-item-media">
+                        {media}
+                    </div>
+            <div class="content-item-footer"><!--腿部-->
+                        <div class="footer_info">
+                            <a href="#" title="赞">{like}<i class="icon_zan icon_icon"></i></a>
+                            <a href="#" title="评论">{comment}<i class="icon_pin icon_icon"></i></a>
+                        </div>
+                        <div class="footer_like">
+                            {like}人觉得眼睛很累
+                        </div>
+            </div>
+         </div>
+    </div>
+    
+</div>    
+    <!--正统内容-->
+	<div class="top">
+    </div>
+    <div class="header">
+    </div>
+    <div class="container">
+    	<div class="scrubber" id="scrubber">
+        	<a href="javascript:;" class="scrubber-year current">2014</a>
+            <a href="javascript:;" class="scrubber-month">3月</a>
+            <a href="javascript:;" class="scrubber-month">2月</a>
+        </div>
+        <div class="content" id="content">
+        	<div class="content-year">2014</div>
+            <div class="content-month">3月</div>
+            <div class="content-item"><!--内容分类-->
+            	<div class="content-item-icon-arrow">
+                </div>
+                <div class="content-item-icon-dot">
+                	<div class="child">
+                	</div>
+                </div><!--图标组-->
+                <div class="content-item-head"><!--年月日-->
+                	<div class="head-title">
+                    	<div class="lunar">
+                        	三</br>&nbsp;&nbsp;十
+                        </div>
+                        2017-12-21
+                    </div>
+                    <div class="head-intro">
+                    	<i class="ui_icon quote_before"></i>
+                    	 少女たちの終わらない夜 大人たちの言いう “くだらないモノ” に
+少女们漫长无尽的夜晚 朝大人们所说的「无聊的东西」
+• 少女たちの終おわらない夜 心を奪われることもある
+少女们漫长无尽的夜晚 就连心灵也曾经被夺走过
+	<i class="ui_icon quote_after"></i>
+                    </div>
+                </div>
+                <div class="contnet-item-media">
+                	<img src="images/psb.jpeg" width="370">
+                </div>
+                <div class="content-item-footer">
+                	<div class="footer_info">
+                    	<a href="#" title="赞">(199)<i class="icon_zan icon_icon"></i></a>
+                        <a href="#" title="评论">(2018)<i class="icon_pin icon_icon"></i></a>
+                    </div>
+                    <div class="footer_like">
+                    	0.24人觉得眼睛很累
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <script src="js/data.js"></script>
+ <script src="js/GetLunarDay.js"></script>
+ <script src="js/fx.js"></script>
+ <script type="text/javascript">
+//通用函数
+var g = function (id){
+	return document.getElementById(id);
+}
+
+var g_tpl = function (id){
+	return g('tpl_'+id).innerHTML;	
+}
+var g_class = function( className ){
+	return document.getElementsByClassName( className );//IE9以下不支持	
+}
+var get_body_w = function(){
+	return document.body.offsetWidth;	
+}
+var get_body_h = function(){
+	return document.body.offsetHeight;	
+}
+//格式化数据 data是一维数组 不利于输出
+var list={};//存放数据
+for (var i=0;i<data.length;i++){
+	var date = new Date(data[i].date);
+	var year = date.getFullYear();
+	var month = date.getMonth() + 1;
+	
+	var lunar = GetLunarDateString( date );
+	//取出数据中的年月和农历
+	if( !list[year]){ list[year]= {} }//创建一维对象year
+	if( !list[year][month]){ list[year][month] = [] }
+	//创建二维数组month
+	var item =data[i];
+	item.lunar = lunar[0] + '</br>&nbsp;&nbsp;' + lunar[1];
+	item.year = year;
+	item.month = month;
+	item.like_format = item.like <1000 ? item.like:(item.like/1000).toFixed(1) + '万';
+	
+	list[year][month].push(item);
+};//list对象里有几个年份对象 而每个年份对象内又有几个月份数组
+//每个月份数组内又存放着几个数据键值对
+//时序菜单的生成 这段的正则有·意思啊
+var html_scrubber_list = [];
+var tpl_year = g_tpl( 'scrubber_year' );
+var tpl_month = g_tpl( 'scrubber_month' );
+
+for( y in list){
+	var html_year = tpl_year.replace(/\{year\}/g,y);
+	var html_month = [];
+	
+	for(m in list[y]){
+	
+		html_month.unshift(tpl_month.replace(/\{month\}/g,m)
+									.replace(/\{year\}/g,y)
+		);
+								
+	}
+	html_year = html_year.replace(/\{list\}/g,html_month.join(''));
+	html_scrubber_list.push(html_year);
+}
+g('scrubber').innerHTML = html_scrubber_list.join('')+
+'<a href="javascript:;" onClick="scroll_top(get_body_h() )">出生</a>';
+
+// 日志列表的 HTML生成
+
+var html_content_list = [];
+var tpl_year = g_tpl( 'content_year' );
+var tpl_month = g_tpl( 'content_month' );
+var tpl_item = g_tpl('content_item');
+
+for( y in list){
+	var html_year = tpl_year.replace(/\{year\}/g,y);
+	var html_month = [];
+	
+	for(m in list[y]){
+		var html_item = [];
+		var isFirst_at_month = true;
+		for( i in list[y][m] ){
+			var item_data = list[y][m][i];
+			var item_html = tpl_item.replace(/\{date\}/g,item_data.date)
+									.replace(/\{lunar\}/g,item_data.lunar)
+									.replace(/\{intro\}/g,item_data.intro)
+									.replace(/\{media\}/g,item_data.media)
+									.replace(/\{like\}/g,item_data.like)
+									.replace(/\{isFirst\}/g,isFirst_at_month?'first':'')
+									.replace(/\{position\}/g,i%2?'right':'left')
+									.replace(/\{like_format\}/g,item_data.like_format)
+									.replace(/\{comment\}/g,item_data.comment);
+			html_item.push( item_html );
+			isFirst_at_month = false;/*判定isfirst的正负来判定是否为这月第一条*/
+										
+		}
+		html_month.unshift(tpl_month.replace(/\{month\}/g,m)
+									.replace(/\{year\}/g,y)
+									.replace(/\{list\}/g,html_item.join(''))
+		);
+								
+	}
+	html_year = html_year.replace(/\{list\}/g,html_month.join(''));
+	html_content_list.push(html_year);
+}
+g('content').innerHTML = html_content_list.join('') +
+'<div class="content-year" id="content_month_2013_3">出生</div>'
+;
+//正则表达式的替换都值得深究啊
+
+//获得元素的高度
+var get_top = function(el){
+	return el.offsetTop + 170 ;/*offset是抓取出的什么数据*/
+}
+// 滚动页面到
+var scroll_top = function(to){
+	var start = document.body.scrollTop;
+	fx( function( now , type ){  window.scroll(0,now); },start ,to );
+		
+}
+//年份 月份点击处理
+var show_year = function( year ){
+	console.log(year);
+	var	c_year = g('content_year_' + year);
+	var top =get_top(c_year);
+	scroll_top(top);
+	expand_year( year ,g('scrubber_year_'+year) )//隐式转换
+}
+var show_month = function( year,month){
+	console.log(year,month);
+	var	c_month = g('content_month_' + year+'_'+month);
+	var top =get_top(c_month);
+	scroll_top(top);
+	highlight_month( g('scrubber_month_'+year+'_'+month));	
+}
+
+//高亮处理
+var highlight_month = function (element){
+	var months = g_class('scrubber-month');
+	
+	for (var i=months.length-1;i>=0;i--){
+		months[i].className = months[i].className.replace(/current/g,'');	
+	};
+	element.className = element.className + ' current';
+	
+}
+
+//年份点击展开就不做了 高亮做了就行了
+var expand_year = function (year,element){
+	var months = g_class('scrubber-month');
+	var years = g_class('scrubber-year');
+	for (var i=years.length-1;i>=0;i--){
+		years[i].className = years[i].className.replace(/current/g,'');	
+	};
+	element.className = element.className + ' current';
+	
+		
+}
+
+//页面滚动处理 固定时时序菜单的位置 自动展开时序菜单
+//自动展开 但是这里先不写
+/*
+var update_scrubber_year = function(top){
+	var years = g('content').getElementsByClassName('content-year');
+	var tops=[];
+	for(var i=0;i<years.length;i++){
+		tops.push( years[i].offsetTop );	
+	}
+	for(var i=1;i<tops.length;i++){
+		if(top > tops[i-1] && top <tops[i]){
+			var year = years[i-1].innerHTML;
+			var s_year = g('scrubber_year_'+year);	
+		}
+	}
+}
+*/
+//自动高亮
+
+var update_scrubber_month = function(top){
+	//日志列表中所有的月份标签
+	var months = g('content').getElementsByClassName('content-month');
+	var tops=[];
+	for(var i=0;i<months.length;i++){
+		tops.push(months[i].offsetTop)	
+	}
+	//定位 top 在窗口的哪个月份区间
+	for(var i=1;i<tops.length;i++){
+		if(top>tops[tops.length-1]){
+			var id= months[tops.length-1].id;
+			highlight_month(g(id.replace('content','scrubber')));	
+		}
+		if( top >tops[i-1] &&top<tops[i]){
+			var id= months[i-1].id;
+			highlight_month(g(id.replace('content','scrubber')));
+		}//bug之最后一个二月没办法自动高亮 
+	}
+}
+//滚动固定
+window.onscroll = function(){
+	var top =document.body.scrollTop;
+	var scrubber = g('scrubber');
+	if(top >200){
+		scrubber.style.position = 'fixed';
+		scrubber.style.top = '60px';
+		scrubber.style.left = (get_body_w()-960)/2 + 'px';	
+	}else{
+		scrubber.style.position='';
+		scrubber.style.top='';
+		scrubber.style.left='';/*什么都不写代表默认处理s*/	
+	}
+	/*固定时序菜单*/
+	update_scrubber_month(top);
+	
+}
+ </script>
+</body>
+</html>
