@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0px; padding:0px;}
+#div1{	
+	height:200px;
+	width:200px;
+	background:#93C;
+	filter:alpha(opacity:30);
+	margin:10px;
+	opacity:0.3;
+}
+</style>
+<script type="text/javascript">
+
+//get tagname抓取方式记错了 蛋疼 这个多个物体每一个都绑定事件的方式好眼熟
+window.onload=function(){	
+	var oDiv=document.getElementsByTagName('div');
+	for(var i=0,j=oDiv.length;i<j;i++){	
+		oDiv[i].alpha=30;
+		oDiv[i].onmouseover=function(){	
+			startMove(this,100);
+		}
+		oDiv[i].onmouseout=function(){	
+			startMove(this,30);
+		}
+	}
+	
+}
+
+
+function startMove(obj,target){	
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function(){	
+		var speed=0;
+		if(obj.alpha<target){	
+			speed=10;
+		}
+		else{	
+			speed=-10;
+		}
+		if(obj.alpha==target){	
+			clearInterval(obj.timer);
+		}
+		else{	
+			obj.alpha+=speed;
+		
+			obj.style.opacity=obj.alpha/100;
+			
+		}
+	},30)
+}
+
+
+/*
+//这里是单个物体的透明度变化
+window.onload=function(){	
+	var oDiv=document.getElementById("div1");
+	oDiv.onmouseover=function(){	
+		startMove(100);
+	}
+	oDiv.onmouseout=function(){	
+		startMove(30);
+	}
+}
+
+var timer=null, alpha=30;
+	function startMove(target){	
+	var oDiv=document.getElementById("div1");
+	clearInterval(timer);
+	timer=setInterval(function(){	
+		var speed=0;
+		//判断是加速还是减速
+		if(alpha<target){	
+			speed=10;
+		}
+		else{	
+			speed=-10;
+		}
+		//判断结束
+		//判断是否打成目的
+		if(alpha==target){	
+			clearInterval(timer);
+		}
+		else{	
+		alpha+=speed;
+		oDiv.style.opacity=alpha/100;
+		}
+	},30)
+		
+	}
+	*/
+</script>
+</head>
+
+<body>
+	<div id="div1"></div>
+    <div id="div1"></div>
+    <div id="div1"></div>
+    <div id="div1"></div>
+</body>
+</html>

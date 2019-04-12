@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+
+*{margin:0px; padding:0px;}
+#div{	width:200px; height:100px; background:#93C; border:3px solid #000;
+}
+</style>
+<script type="text/javascript" src="完整的运动框架.js"></script>
+<script type="text/javascript">
+	window.onload=function(){	
+		var oDiv=document.getElementById("div");
+		oDiv.onmouseover=function(){	
+			startMove(oDiv,{width:400,height:101});
+		}
+		oDiv.onmouseout=function(){	
+			startMove(oDiv,{width:200,height:100});
+		}
+	}
+	
+	
+	
+</script>
+
+</head>
+
+<body>
+	<div id="div"></div>
+</body>
+</html>

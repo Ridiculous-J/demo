@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0px; padding:0px;}
+	ul,li{list-style:none}
+	ul li{	
+		width:200px;
+		height:100px;
+		background:yellow;
+		margin-bottom:20px;
+		border:2px solid #969;
+	}
+</style>
+<script type="text/javascript">
+//多个物体运动和单个物体运动差不多 那么区别在哪里呢 差别在于传递的是obj 用的是this 而不是单个
+/*	window.onload=function(){	
+		var ali=document.getElementsByTagName("li");
+		for(var i=0;i<ali.length;i++){	
+			
+			ali[i].onmouseover=function(){	
+			startMove(this,400);
+			}
+			ali[i].onmouseout=function(){	
+			startMove(this,200);
+			}
+		}
+	}*/
+	
+	//多属性运作
+	window.onload=function(){	
+		var li1=document.getElementById('1'),
+			li2=document.getElementById("2");
+			li1.onmouseover=function(){	
+				startMove(this,'opacity',30);
+			}
+			li1.onmouseout=function(){	
+				startMove(this,'opacity',100);
+			}
+			li2.onmouseover=function(){	
+				startMove(this,'height',400);
+			}
+			li2.onmouseout=function(){	
+				startMove(this,'height',200);
+			}
+	}
+	
+	//初步的运动框架
+	function startMove(obj,attr,target,fn){	
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+		var iccu=0;
+		if(attr=='opacity'){	
+			iccu=Math.round(parseFloat(getStyle(obj,attr))*100);//这里的Math是为了四舍五入取整数
+		}
+		else{	
+		  iccu=parseInt(getStyle(obj,attr));
+		}
+		
+		var speed=(target - iccu)/5; 
+		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+		if(iccu==target){
+			clearInterval(obj.timer);
+			if(fn){	
+				fn();
+			}
+		}
+		/*
+		else{
+ 	 		if(attr=='opacity'){
+				obj.style.opacity = (icu+speed)/100;
+
+ 	 		}else{
+ 	 			obj.style[attr] = icu+speed+"px"
+ 	 		}
+
+ 	 	}
+		
+		
+		*/
+		else{
+			if(attr=='opacity'){	
+			obj.style.opacity=(iccu+speed)/100;
+			
+		}else{	
+			obj.style[attr]=iccu+speed+'px';
+		}
+		}
+		},30)
+	}
+	
+		function getStyle(obj,attr){
+		if(obj.currentStyle){	
+			return obj.currentStyle[attr];//针对IE浏览器
+		}
+		else{	
+			return getComputedStyle(obj,false)[attr];//针对火狐
+		}
+	}
+</script>
+</head>
+
+<body>
+	<ul>
+    	<li id="1"></li>
+        <li id="2"></li>
+        <li></li>
+    </ul>
+</body>
+</html>
