@@ -1,0 +1,50 @@
+
+
+body{ 
+	padding-top: 50px; 
+	padding-bottom: 30px;
+}
+.carousel{
+	height: 500px;
+	background-color:#000;
+	margin-bottom: 30px;
+}
+.carousel .item{
+	height: 500px;
+	background-color:#000;
+}
+.carousel img{
+	width: 100%;
+}
+.carousel-caption p{
+	margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.8;
+}
+.bth-carousel{
+	margin-bottom: 20px;
+	padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px
+}
+
+.container_section .col-md-4{
+	text-align: center;
+}
+.container_section hr{
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+.pd-tb .row{
+	padding: 30px 0;
+}
+.title_main{
+	margin-top: 120px;
+	font-size: 50px;
+    color: #2a6496;
+}
+.title_main>.title_secondary{
+	font-size: 28px;
+	color: #999;
+}
