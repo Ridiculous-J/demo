@@ -1,0 +1,92 @@
+/*常用字体,伪类,背景,a标签和清除浮动*/
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+    word-wrap: break-word;
+}
+body{
+	font-size: 12px;
+	background-color: #F0F3EF;
+}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,   
+fieldset,input,textarea,p,blockquote,th,td {   
+margin:0;   
+padding:0;   
+} 
+a{
+	color: #999;
+	text-decoration: none;
+	font-size: 12px;
+}
+a:hover{
+	color:#F10215;
+}
+body .swiper-button-prev{
+	width: 20px;
+	height: 40px;
+	background-color:rgba(0,0,0,.1);
+	background-image: url(../img/swiper-button-prev.png);
+	background-size: 50% 50%;
+}
+body .swiper-button-next{
+	width: 20px;
+	height: 40px;
+	background-color:rgba(0,0,0,.1);
+	background-image: url(../img/swiper-button-next.png);
+	background-size: 50% 50%;
+}
+
+
+
+.show{ display: block;}
+.hide{ display: none;} 
+.clear:after{
+	display:block;
+	clear:both;
+	content:"";
+	visibility:hidden;
+}
+
+.icon{
+	background: url(../img/icon.png) center center no-repeat;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+.icon_footer{
+	background: url(../img/icon_footer.png) center center no-repeat;
+	display: inline-block;
+	width: 104px;
+	height: 33px;
+	vertical-align: middle;
+}
+.icon_head_top-i1{background-position:-7px -4px;}
+.icon_head_top-i2{background-position:-9px -91px;}
+.icon_head_top-i3{background-position:-10px -118px;}
+.icon_head_top-i4{background-position:-10px -145px;}
+.icon_head_top-i5{background-position:-10px -171px;}
+.icon_head_top-i6{background-position:-10px -198px;}
+.icon_head_bottom-i7{background-position:-10px -35px;}
+.icon_head_bottom-i8{background-position:-8px -62px;}
+.icon_head_bottom-i9{background-position:-15px -231px;}
+.icon_section_nav_box-i10{background-position:-15px -260px;}
+.icon_section_nav_box-i11{background-position:-15px -291px;}
+.icon_section_nav_box-i12{background-position:-19px -322px;}
+.icon_section_nav_box-i13{background-position:-17px -346px;}
+.icon_section_nav_box-i14{background-position:-17px -373px;}
+.icon_section_nav_box-i15{background-position:-17px -404px;}
+.icon_section_nav_box-i16{background-position:-16px -430px;}
+.icon_section_nav_box-i17{background-position:-17px -463px;}
+.icon_section_nav_box-i18{background-position:-17px -497px;}
+.icon_section_nav_box-i19{background-position:-17px -528px;}
+.icon_section_nav_box-i20{background-position:-17px -556px;}
+.icon_section_nav_box-i21{background-position:-17px -587px;}
+.icon_section-i22{background-position:-20px -622px;}
+
+.icon_footer-i1{background-position:-200px -110px;}
+.icon_footer-i2{background-position:-200px -74px;}
+.icon_footer-i3{background-position:-200px -37px;}
+.icon_footer-i4{background-position:-200px -1px;}
+.icon_footer-i5{background-position:-200px -147px;}
